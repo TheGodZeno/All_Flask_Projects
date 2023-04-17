@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_FILE_SIZE 1024 * 1024  
+#define MAX_FILE_SIZE 1000000
 #define MAX_LINE_SIZE 1024
-#define MAX_SEGMENT_SIZE 100000000 
+#define MAX_SEGMENT_SIZE 100000000
 
 void sortFile(const char* , const char* , int , int);
 
