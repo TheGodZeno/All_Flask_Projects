@@ -4,12 +4,17 @@
 
 #define MAX_FILE_SIZE 1000000
 #define MAX_LINE_SIZE 1024
-#define MAX_SEGMENT_SIZE 100000000
+#define MAX_SEGMENT_SIZE 10000000
 
 void sortFile(const char* , const char* , int , int);
 
 int main(){
-    sortFile("C-test/inFile", "C-test/outFile", );
+    //sortFile("C-test/inFile", "C-test/outFile", );
+    int i, sum = 0;
+    for(i = 0; i <  50; i++){
+        sum += i;
+    }
+    printf("The sum is: ", sum);
     return 0;
 }
 
@@ -78,3 +83,5 @@ void sortFile(const char* inFilePath, const char* outFilePath, int numberOfLines
     free(segmentBuffer);
     fclose(inFile);
 }
+
+
