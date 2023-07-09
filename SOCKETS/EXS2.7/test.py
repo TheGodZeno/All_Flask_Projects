@@ -57,13 +57,13 @@ def check_client(server):
     client, (ip, port) = server.accept()
     data = client.recv(MESSAGE_SIZE)  # Ask for service (just Hi from client)
     options_menu =\
-        ['You may select: image / foldr / delet / copyf / pgmrn / quitc',
-            'Your options are: 1. image - for screen-shot.   ',
-            '                  2. foldr - for folder content.',
-            '                  3. delet - To delete a file.  ',
-            '                  4. copyf - To copy a file.    ',
-            '                  5. pgmrn - To run a program.  ',
-            '                  6. quitc - To quit client.    ']
+        ['You may select: TAKE_SCREENSHOT / DIR / DELETE / COPY / EXECUTE / EXIT',
+            'Your options are: 1. TAKE_SCREENSHOT - for screen-shot.   ',
+            '                  2. DIR - for folder content.',
+            '                  3. DELETE - To delete a file.  ',
+            '                  4. COPY - To copy a file.    ',
+            '                  5. EXECUTE - To run a program.  ',
+            '                  6. EXIT - To quit client.    ']
 
     first_response = '\n'.join(options_menu)
     first_message_back = format_response(first_response)  # Add length

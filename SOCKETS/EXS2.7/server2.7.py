@@ -6,12 +6,12 @@ from netProtocol import create_msg_with_header, recieve_msg
 RECIEVE_BUFFER = 1024
 
 CMD_FUNCTIONS_DICT = {'TAKE_SCREENSHOT': cmd_modules.take_snap,
-                      'SEND_FILE': cmd_modules.send_file,
-                      'COPY': cmd_modules.copyf,
-                      'DELETE': cmd_modules.deltef,
-                      'DIR': cmd_modules.dir,
-                      'EXECUTE': cmd_modules.run_prog,
-                      'EXIT': None}
+                        'SEND_FILE': cmd_modules.send_file,
+                        'COPY': cmd_modules.copyf,
+                        'DELETE': cmd_modules.deltef,
+                        'DIR': cmd_modules.dir,
+                        'EXECUTE': cmd_modules.run_prog,
+                        'EXIT': None}
 
 def recieve_client_request(client_socket):
     request = recieve_msg(client_socket)
@@ -39,7 +39,7 @@ def check_valid_request(cmd, params):
             return False, 'Delete must get one parm'
         elif not os.path.isfile(params):
             return False, "The file doesn't exist"
-    elif cmd == 'TAKE_SCREENSHOT' and not params:
+    elif cmd == 'TAKE_SCREENSHOT' and params:
         return False, "TAKE_SCREENSHOT doesn't have params"
     elif cmd == 'DIR':
         if not os.path.isdir(params.strip()):
@@ -64,6 +64,17 @@ def main():
     while True:
         print("listing to client to connect to server....")
         client_socket, address = server_socket.accept()
+        options_menu =\
+        ['You may select: TAKE_SCREENSHOT / DIR / DELETE / COPY / EXECUTE / EXIT',
+            'Your options are: 1. TAKE_SCREENSHOT - for screen-shot.   ',
+            '                  2. DIR - for folder content.',
+            '                  3. DELETE - To delete a file.  ',
+            '                  4. COPY - To copy a file.    ',
+            '                  5. EXECUTE - To run a program.  ',
+            '                  6. EXIT - To quit client.    ']
+
+        first_response = '\n'.join(options_menu)
+        send_response_to_client(first_response, client_socket)
         done = False
         while not done:
             cmd,params  = recieve_client_request(client_socket)
